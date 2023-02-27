@@ -22,7 +22,8 @@ namespace StackOverflow.Controllers
         // GET: Questions
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Question.ToListAsync());
+            //Include(q => q.Answers) To see all Answers And Comments
+            return View(await _context.Question.ToListAsync());
         }
 
         // GET: Questions/Details/5

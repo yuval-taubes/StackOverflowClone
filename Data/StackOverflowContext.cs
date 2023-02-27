@@ -18,5 +18,8 @@ namespace StackOverflow.Data
 
         public DbSet<StackOverflow.Models.QuestionComments> QuestionComments { get; set; } = default!;
 
+        public DbSet<StackOverflow.Models.Answer> Answers { get; set; } = default!;
+
+
     }
 }

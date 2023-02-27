@@ -1,0 +1,39 @@
+﻿@model int
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Question</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddAnswerToQuestion">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label for="Title" class="control-label"></label>
+                <input name="Title" class="form-control" id="Title" />
+            </div>
+            <div class="form-group">
+                <label for="Description" class="control-label"></label>
+                <input name="Description" class="form-control" id="Description" />
+            </div>
+            <input type="hidden" name="QuestionId" value="@Model" />
+            <div class="form-group">
+                <input type="submit" value="Post Comment" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
