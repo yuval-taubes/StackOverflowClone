@@ -8,7 +8,6 @@
         public string? Description { get; set; }
 
         public DateTime PostTime { get; set; }
-
-        List<string>? Tags { get; set; }
+        public string CommentOnPostLink { get; set; }
     }
 }
