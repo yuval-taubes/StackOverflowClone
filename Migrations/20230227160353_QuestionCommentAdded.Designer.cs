@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StackOverflow.Data;
 
@@ -11,9 +12,10 @@ using StackOverflow.Data;
 namespace StackOverflow.Migrations
 {
     [DbContext(typeof(StackOverflowContext))]
-    partial class StackOverflowContextModelSnapshot : ModelSnapshot
+    [Migration("20230227160353_QuestionCommentAdded")]
+    partial class QuestionCommentAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,25 +44,6 @@ namespace StackOverflow.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Question");
-                });
-
-            modelBuilder.Entity("StackOverflow.Models.QuestionComments", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("QuestionId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("QuestionComments");
                 });
 #pragma warning restore 612, 618
         }

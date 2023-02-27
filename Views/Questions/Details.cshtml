@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Details";
 }
+<a class="Nav-Link" asp-area="" asp-controller="Comments" asp-action="AddCommentToQuestion" asp-route-QuestionId="@Model.Id">Comment this Post</a>
 
 <h1>Details</h1>
 
@@ -32,7 +33,7 @@
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |]
-    <a>Comment On this Question</a> 
+
 
     <a asp-action="Index">Back to List</a>
 </div>

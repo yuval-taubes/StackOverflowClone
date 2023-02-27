@@ -8,6 +8,5 @@
         public string? Description { get; set; }
 
         public DateTime PostTime { get; set; }
-        public string CommentOnPostLink { get; set; }
     }
 }

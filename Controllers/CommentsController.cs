@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using StackOverflow.Data;
 using StackOverflow.Models;
+using StackOverflow.Models.ViewModel;
 
 namespace StackOverflow.Controllers
 {
@@ -13,9 +15,9 @@ namespace StackOverflow.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            return View(await _context.QuestionComments.ToListAsync());
         }
 
         public IActionResult AddCommentToQuestion(int? QuestionId)
@@ -24,17 +26,15 @@ namespace StackOverflow.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Description")] QuestionComments comment, int QuestionId)
+        public IActionResult AddCommentToQuestion(QuestionCommentViewModel vm)
         {
-            if (ModelState.IsValid)
-            {
-                comment.QuestionId = QuestionId;
-                _context.Add(comment);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(comment);
+            QuestionComments comment = new QuestionComments();
+            comment.QuestionId = vm.QuestionId;
+            comment.Description = vm.Description;
+            _context.Add(comment);
+            _context.SaveChanges();
+
+            return Redirect($"/Questions/Details/{vm.QuestionId}");
         }
     }
 }
